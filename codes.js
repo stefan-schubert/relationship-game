@@ -23,7 +23,7 @@ customElements.define(
         const dataUrl = await QRCode.toDataURL(`${prefix}${c}.png`);
         content += `
         <div style="display: flex; justify-content: space-between;">
-            <div style="width:50%;"><img style="width:100%;object-fit: cover;" src="../challenges/${c}.png"></div>
+            <div style="width:50%;"><img style="width:100%;object-fit: cover;" src="./challenges/${c}.png"></div>
             <div style="width:50%;">
                 ${svg}
                 <div style="display: flex; justify-content: center;">
