@@ -6,11 +6,12 @@
 </head>
 <body>
     <test-code>
-        <div style="padding-top: 100px; background: no-repeat url('./bg.png');background-size: cover;">
+        <div data-scanner style="width: 100%;">
+            <img src="bg.png" style="width:100%;object-fit: cover;">
             <div id="reader" style="width:100%;"></div>
-            <button data-toggle type="button" role="button" hidden style="height:30px;">Zurück zum Scannen</button>
-            <div data-result hidden></div>
         </div>
+        <button data-toggle type="button" role="button" hidden style="height:30px;">Zurück zum Scannen</button>
+        <div data-result hidden></div>
     </test-code>
     <script src="https://unpkg.com/html5-qrcode"></script>
     <script type="module" src="./test.js"></script>
