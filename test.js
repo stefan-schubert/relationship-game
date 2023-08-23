@@ -1,3 +1,7 @@
+import { challenges, wrong, prefix } from '.constants.js';
+
+const validUrls = [...challenges, wrong].map((i) => `${prefix}${i}.png`);
+
 customElements.define(
   'test-code',
   class TestCode extends HTMLElement {
@@ -32,7 +36,8 @@ customElements.define(
     }
 
     render(decodedText) {
-      if (decodedText.endsWith('.png')) {
+      const [url] = decodedText.split('?');
+      if (validUrls.includes(url)) {
         this.querySelector('#reader').hidden = true;
         this.querySelector('[data-toggle]').hidden = false;
         const resultCnt = this.querySelector('[data-result]');
