@@ -6,9 +6,11 @@
 </head>
 <body>
     <test-code>
-        <div id="reader" style="width:100%; background: no-repeat url('./bg.png');background-size: cover;"></div>
-        <button data-toggle type="button" role="button" hidden style="height:30px;">Zurück zum Scannen</button>
-        <div data-result hidden></div>
+        <div style="padding-top: 100px; background: no-repeat url('./bg.png');background-size: cover;">
+            <div id="reader" style="width:100%;"></div>
+            <button data-toggle type="button" role="button" hidden style="height:30px;">Zurück zum Scannen</button>
+            <div data-result hidden></div>
+        </div>
     </test-code>
     <script src="https://unpkg.com/html5-qrcode"></script>
     <script type="module" src="./test.js"></script>
