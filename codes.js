@@ -8,6 +8,7 @@ const challenges = [
   '07_midi_kids',
   '08_saal',
 ];
+const wrong = 'leider_falsch';
 const prefix = `${window.location.origin}/relationship-game/challenges/`;
 
 customElements.define(
@@ -25,30 +26,36 @@ customElements.define(
         const dataUrl = await QRCode.toDataURL(`${prefix}${c}.png`);
         this.innerHTML += `
           <div style="display: flex; justify-content: space-between;">
-              <div style="width:50%;"><img style="width:100%;object-fit: cover;" src="./challenges/${c}.png"></div>
-              <div style="width:50%;">
-                  ${svg}
-                  <div style="display: flex; justify-content: center;">
-                      <a style="margin-right:30px" href="${dataUrl}" download="${c}_qr_code.png">Download als .png</a>
-                      <a href="data:image/svg+xml;base64,${btoa(
-                        svg
-                      )}" download="${c}_qr_code.svg">Download als .svg</a>
-                  </div>
+            <div style="width:50%;">
+              <img style="width:100%;object-fit: cover;" src="./challenges/${c}.png">
+            </div>
+            <div style="width:50%;">
+              <h4 style="text-align: center;">${c}</h4>
+              ${svg}
+              <div style="display: flex; justify-content: center;">
+                <a style="margin-right:30px" href="${dataUrl}" download="${c}_qr_code.png">Download als .png</a>
+                <a href="data:image/svg+xml;base64,${btoa(
+                  svg
+                )}" download="${c}_qr_code.svg">Download als .svg</a>
               </div>
+            </div>
           </div>
         `;
       }
 
       this.innerHTML += `
         <div style="display: flex; justify-content: space-between;">
-          <div style="width:50%;"><img style="width:100%;object-fit: cover;" src="./challenges/leider_falsch.png"></div>
           <div style="width:50%;">
-              <div data-svg-container style="width: 100%;"></div>
-              <div style="display: flex; justify-content: center;">
-                  <a data-wrong-png style="margin-right:30px" href="" download="leider_falsch_qr_code.png">Download als .png</a>
-                  <a data-wrong-svg style="margin-right:30px" href="" download="leider_falsch_qr_code.svg">Download als .svg</a>
-                  <a data-generate href="">Neu generieren</a>
-              </div>
+            <img style="width:100%;object-fit: cover;" src="./challenges/${wrong}.png">
+          </div>
+          <div style="width:50%;">
+            <h4 style="text-align: center;">${wrong}</h4>
+            <div data-svg-container style="width: 100%;"></div>
+            <div style="display: flex; justify-content: center;">
+                <a data-wrong-png style="margin-right:30px" href="" download="${wrong}_qr_code.png">Download als .png</a>
+                <a data-wrong-svg style="margin-right:30px" href="" download="${wrong}_qr_code.svg">Download als .svg</a>
+                <a data-generate href="">Neu generieren</a>
+            </div>
           </div>
         </div>
       `;
@@ -65,10 +72,8 @@ customElements.define(
 
     async regenerate() {
       const now = Date.now();
-      const svg = await QRCode.toString(`${prefix}leider_falsch.png?${now}`);
-      const dataUrl = await QRCode.toDataURL(
-        `${prefix}leider_falsch.png?${now}`
-      );
+      const svg = await QRCode.toString(`${prefix}${wrong}.png?${now}`);
+      const dataUrl = await QRCode.toDataURL(`${prefix}${wrong}.png?${now}`);
       this.querySelector('[data-svg-container]').innerHTML = svg;
       this.querySelector('[data-wrong-png]').href = dataUrl;
       this.querySelector(
