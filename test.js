@@ -8,8 +8,8 @@ customElements.define(
     constructor() {
       super();
 
-      this.init();
       this.scanner = new Html5Qrcode('reader');
+      this.init();
     }
 
     async init() {
@@ -29,7 +29,7 @@ customElements.define(
           this.render.bind(this)
         );
       } catch {
-        this.render(`${window.location.origin}/challenges/leider_falsch.png`);
+        // ignore
       }
     }
 
