@@ -9,16 +9,18 @@ customElements.define(
       super();
 
       this.init();
+      this.scanner = new Html5Qrcode('reader');
     }
 
     async init() {
       this.querySelector('[data-toggle]').addEventListener('click', () => {
+        this.scanner.resume();
         this.querySelector('[data-scanner]').hidden = false;
         this.querySelector('[data-toggle]').hidden = true;
         this.querySelector('[data-result]').hidden = true;
       });
       try {
-        await new Html5Qrcode('reader').start(
+        await this.scanner.start(
           { facingMode: 'environment' },
           {
             fps: 10,
@@ -34,6 +36,7 @@ customElements.define(
     render(decodedText) {
       const [url] = decodedText.split('?');
       if (validUrls.includes(url)) {
+        this.scanner.pause(true);
         this.querySelector('[data-scanner]').hidden = true;
         this.querySelector('[data-toggle]').hidden = false;
         const resultCnt = this.querySelector('[data-result]');
