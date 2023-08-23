@@ -1,4 +1,4 @@
-import { challenges, wrong, prefix } from '.constants.js';
+import { challenges, wrong, prefix } from './constants.js';
 
 const validUrls = [...challenges, wrong].map((i) => `${prefix}${i}.png`);
 

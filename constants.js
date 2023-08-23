@@ -10,3 +10,4 @@ export const challenges = [
 ];
 export const wrong = 'leider_falsch';
 export const prefix = `${window.location.origin}/relationship-game/challenges/`;
+export const path = '/relationship-game';

@@ -1,4 +1,4 @@
-import { challenges, wrong, prefix } from '.constants.js';
+import { challenges, wrong, prefix, path } from './constants.js';
 
 customElements.define(
   'qr-codes',
@@ -44,6 +44,26 @@ customElements.define(
                 <a data-wrong-png style="margin-right:30px" href="" download="${wrong}_qr_code.png">Download als .png</a>
                 <a data-wrong-svg style="margin-right:30px" href="" download="${wrong}_qr_code.svg">Download als .svg</a>
                 <a data-generate href="">Neu generieren</a>
+            </div>
+          </div>
+        </div>
+      `;
+      const svg = await QRCode.toString(`${window.location.origin}${path}`);
+      const dataUrl = await QRCode.toDataURL(
+        `${window.location.origin}${path}`
+      );
+      this.innerHTML += `
+        <div style="display: flex; justify-content: space-between;">
+          <div style="width:50%;">
+            <h2>Scanner Adresse</h2>
+          </div>
+          <div style="width:50%;">
+            ${svg}
+            <div style="display: flex; justify-content: center;">
+              <a style="margin-right:30px" href="${dataUrl}" download="scanner_qr_code.png">Download als .png</a>
+              <a href="data:image/svg+xml;base64,${btoa(
+                svg
+              )}" download="scanner_qr_code.svg">Download als .svg</a>
             </div>
           </div>
         </div>
