@@ -7,6 +7,7 @@ export const challenges = [
   '06_maxi_kids',
   '07_midi_kids',
   '08_saal',
+  '09_testcode',
 ];
 export const wrong = 'leider_falsch';
 export const prefix = `${window.location.origin}/relationship-game/challenges/`;
